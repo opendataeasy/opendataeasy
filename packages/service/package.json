@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Library for services (mongodb, postgresql, graphql, restful, etc)",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/opendataeasy/opendataeasy/issues"
   },
-  "homepage": "https://github.com/opendataeasy/opendataeasy#readme"
+  "homepage": "https://github.com/opendataeasy/opendataeasy#readme",
+  "dependencies": {
+    "mongodb": "^4.10.0"
+  }
 }
