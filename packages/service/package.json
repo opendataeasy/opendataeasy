@@ -18,5 +18,8 @@
   "homepage": "https://github.com/opendataeasy/opendataeasy#readme",
   "dependencies": {
     "mongodb": "^4.10.0"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^8.9.3"
   }
 }
