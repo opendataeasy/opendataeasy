@@ -17,6 +17,7 @@ The format of this README is based on [Make a README][1].
 - Node.js
 - MongoDB
 - Docker
+- OOP
 
 ## Installation
 

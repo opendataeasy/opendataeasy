@@ -19,19 +19,14 @@ describe("MongoDB", () => {
   });
 
   afterAll(() =>
-    Promise.allSettled([
-      instance.stop(),
-      client.close(),
-      MongoDB.close(mongodb),
-    ])
+    Promise.allSettled([instance.stop(), client.close(), mongodb.close()])
   );
 
   afterEach(() => client.db().dropCollection(fixture.collectionName));
 
   describe("provision", () => {
     it("should provision collection with docs", async () => {
-      await MongoDB.provision(
-        mongodb,
+      await mongodb.provision(
         fixture.collectionName,
         fixture.schema,
         fixture.docs
@@ -47,8 +42,7 @@ describe("MongoDB", () => {
     });
 
     it("should provision collection with schema", async () => {
-      await MongoDB.provision(
-        mongodb,
+      await mongodb.provision(
         fixture.collectionName,
         fixture.schema,
         fixture.docs
@@ -64,8 +58,7 @@ describe("MongoDB", () => {
     });
 
     it("should return insertion result", async () => {
-      const res = await MongoDB.provision(
-        mongodb,
+      const res = await mongodb.provision(
         fixture.collectionName,
         fixture.schema,
         fixture.docs
