@@ -1,0 +1,39 @@
+#!/usr/bin/env sh
+set -o errexit -o nounset -o xtrace
+
+WORKSPACE="${WORKSPACE:?}"
+MODULE="${MODULE:?}"
+
+class_name="$(basename "$MODULE")"
+src_dir="packages/$WORKSPACE/src/$(dirname "$MODULE")"
+test_dir="packages/$WORKSPACE/test/$(dirname "$MODULE")"
+src="$src_dir/$class_name.ts"
+tests="$test_dir/$class_name.test.ts"
+fixture="$test_dir/$class_name.fixture.ts"
+
+mkdir -p "$src_dir" "$test_dir"
+
+cat <<TS > "$src"
+const $class_name = {};
+
+export default $class_name;
+TS
+
+cat <<TS > "$tests"
+import $class_name from "../../src/$MODULE";
+
+describe("$class_name", () => {
+  it("should be an object", () => {
+    expect($class_name).toBeInstanceOf(Object);
+  });
+});
+TS
+
+cat <<TS > "$fixture"
+const fixture = {};
+
+export default fixture;
+TS
+
+git add "$src" "$tests" "$fixture"
+git status -s
