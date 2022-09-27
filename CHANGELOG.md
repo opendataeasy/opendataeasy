@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog][1], and this project adheres to
 
 ### Added
 
+- Service/MongoDB
 - CHANGELOG.md
 - README.md
 - npm test with jest, eslint, tsc, prettier
