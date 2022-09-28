@@ -4,7 +4,8 @@
   "description": "Make open data easy",
   "main": "index.js",
   "scripts": {
-    "test": "set -eux; jest; eslint --fix --ext .js,.jsx,.ts,.tsx .; tsc --noEmit; prettier --write --loglevel warn ."
+    "test": "set -eux; jest; eslint --fix --ext .js,.jsx,.ts,.tsx .; tsc --noEmit; prettier --write --loglevel warn .",
+    "lint-staged": "lint-staged -v"
   },
   "repository": {
     "type": "git",
