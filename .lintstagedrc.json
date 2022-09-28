@@ -1,0 +1,9 @@
+{
+  "*.{json,md}": "prettier --write --loglevel warn",
+  "*.ts": [
+    "jest",
+    "eslint --fix",
+    "npx -y tsc-files --noEmit",
+    "prettier --write --loglevel warn"
+  ]
+}
