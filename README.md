@@ -29,8 +29,16 @@ npm install
 
 ## Testing
 
+Test the whole project.
+
 ```sh
 npm test
+```
+
+Test staged file for faster dev cycle.
+
+```sh
+npm run lint-staged
 ```
 
 ## Codegen
