@@ -8,17 +8,12 @@ class MongoDB {
     this.#client = new MongoClient(uri);
   }
 
-  static async close(mongodb: MongoDB) {
-    await mongodb.#client.close();
+  async close() {
+    await this.#client.close();
   }
 
-  static async provision(
-    mongodb: MongoDB,
-    collectionName: string,
-    schema: object,
-    docs: Document[]
-  ) {
-    const collection = await mongodb.#client
+  async provision(collectionName: string, schema: object, docs: Document[]) {
+    const collection = await this.#client
       .db()
       .createCollection(collectionName, {
         validator: {

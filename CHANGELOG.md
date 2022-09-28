@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog][1], and this project adheres to
 
 ### Added
 
+- OOP to tech stack
 - [Codegen](./README.md#Codegen)
 - Service/MongoDB
 - CHANGELOG.md
