@@ -6,12 +6,13 @@ MODULE="${MODULE:?}"
 
 class_name="$(basename "$MODULE")"
 src_dir="packages/$WORKSPACE/src/$(dirname "$MODULE")"
-test_dir="packages/$WORKSPACE/test/$(dirname "$MODULE")"
+tests_dir="packages/$WORKSPACE/test/$(dirname "$MODULE")"
 src="$src_dir/$class_name.ts"
-tests="$test_dir/$class_name.test.ts"
-fixture="$test_dir/$class_name.fixture.ts"
+tests="$tests_dir/$class_name.test.ts"
+fixture="$tests_dir/$class_name.fixture.ts"
+tests_to_src="$(node -p "path.relative('$tests_dir', '$src_dir/$class_name')")"
 
-mkdir -p "$src_dir" "$test_dir"
+mkdir -p "$src_dir" "$tests_dir"
 
 cat <<TS > "$src"
 const $class_name = {};
@@ -20,11 +21,13 @@ export default $class_name;
 TS
 
 cat <<TS > "$tests"
-import $class_name from "../../src/$MODULE";
+import $class_name from "$tests_to_src";
 
 describe("$class_name", () => {
-  it("should be an object", () => {
-    expect($class_name).toBeInstanceOf(Object);
+  describe("TODO", () => {
+    it("should be an object", () => {
+      expect($class_name).toBeInstanceOf(Object);
+    });
   });
 });
 TS
