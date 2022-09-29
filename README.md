@@ -43,7 +43,7 @@ npm run lint-staged
 
 ## Codegen
 
-```
+```sh
 ❯ WORKSPACE=dataset MODULE=DataSet/DataGovTW ./bin/codegen
 + WORKSPACE=dataset
 + MODULE=DataSet/DataGovTW
