@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+set -o errexit -o nounset -o xtrace
+
+gh pr create -d -H"$(git rev-parse --abbrev-ref HEAD)" -F.github/pull_request_template.md -t"$*"
