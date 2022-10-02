@@ -15,7 +15,11 @@ tests_to_src="$(node -p "path.relative('$tests_dir', '$src_dir/$class_name')")"
 mkdir -p "$src_dir" "$tests_dir"
 
 cat <<TS > "$src"
-const $class_name = {};
+class $class_name {
+  method() {
+    return this;
+  }
+};
 
 export default $class_name;
 TS
@@ -24,9 +28,10 @@ cat <<TS > "$tests"
 import $class_name from "$tests_to_src";
 
 describe("$class_name", () => {
-  describe("TODO", () => {
-    it("should be an object", () => {
-      expect($class_name).toBeInstanceOf(Object);
+  describe("method", () => {
+    it("should return an object", () => {
+      const obj = new $class_name()
+      expect(obj.method()).toEqual(obj);
     });
   });
 });
