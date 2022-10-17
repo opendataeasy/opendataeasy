@@ -13,7 +13,8 @@
         "outputPath": "dist/apps/gql",
         "main": "apps/gql/src/main.ts",
         "tsConfig": "apps/gql/tsconfig.app.json",
-        "assets": ["apps/gql/src/assets"]
+        "assets": ["apps/gql/src/assets"],
+        "generatePackageJson": true
       },
       "configurations": {
         "production": {
