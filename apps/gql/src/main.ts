@@ -1,18 +1,56 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
+// https://www.apollographql.com/docs/apollo-server/api/express-middleware
+// https://creotip.io/posts/nx-testing-apollo-server-mongodb-mongoose#query_products
+import { ApolloServer } from '@apollo/server';
+import { expressMiddleware } from '@apollo/server/express4';
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import * as express from 'express';
+import * as http from 'http';
+import * as cors from 'cors';
+import * as bodyParser from 'body-parser';
+import { typeDefs, resolvers } from './schema';
 
-const app = express();
+interface MyContext {
+  token?: string;
+}
 
-app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to gql!' });
-});
+async function startApolloServer() {
+  // Required logic for integrating with Express
+  const app = express();
+  // Our httpServer handles incoming requests to our Express app.
+  // Below, we tell Apollo Server to "drain" this httpServer,
+  // enabling our servers to shut down gracefully.
+  const httpServer = http.createServer(app);
 
-const port = process.env.port || 3333;
-const server = app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/api`);
-});
-server.on('error', console.error);
+  // Same ApolloServer initialization as before, plus the drain plugin
+  // for our httpServer.
+  const server = new ApolloServer<MyContext>({
+    typeDefs,
+    resolvers,
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
+  });
+  // Ensure we wait for our server to start
+  await server.start();
+
+  // Set up our Express middleware to handle CORS, body parsing,
+  // and our expressMiddleware function.
+  app.use(
+    '/',
+    cors<cors.CorsRequest>(),
+    bodyParser.json(),
+    // expressMiddleware accepts the same arguments:
+    // an Apollo Server instance and optional configuration options
+    expressMiddleware(server, {
+      context: async ({ req }) => ({ token: req.headers.token })
+    })
+  );
+
+  // Modified server startup
+  await new Promise<void>(resolve =>
+    httpServer.listen({ port: 3333 }, resolve)
+  );
+  console.log(`🚀 Server ready at http://localhost:3333/`);
+}
+
+const server = startApolloServer();
+
+export default server;
