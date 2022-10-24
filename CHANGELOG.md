@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog][1], and this project adheres to
 
 ### Added
 
+- gql
 - GOAL.md
 - web
 - CHANGELOG.md
