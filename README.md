@@ -6,6 +6,10 @@ The format of this README is based on [Make a README][1].
 
 [1]: https://www.makeareadme.com/ "Make a README"
 
+## Goal
+
+[GOAL](./GOAL.md)
+
 ## Changelog
 
 [CHANGELOG](./CHANGELOG.md)
