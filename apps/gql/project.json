@@ -4,6 +4,13 @@
   "sourceRoot": "apps/gql/src",
   "projectType": "application",
   "targets": {
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "flyctl deploy"
+
+      }
+    },
     "build": {
       "executor": "@nrwl/webpack:webpack",
       "outputs": ["{options.outputPath}"],

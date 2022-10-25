@@ -1,0 +1,10 @@
+# https://docs.docker.com/compose/compose-file/compose-file-v3/
+version: "3.8"
+services:
+  gql:
+    build:
+      context: .
+      dockerfile: ./apps/gql/Dockerfile
+    image: opendataeasy/gql
+    ports:
+      - 3333:3333

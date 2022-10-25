@@ -1,0 +1,22 @@
+# derived
+.next
+dist
+node_modules
+
+# docker
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# editor
+.editorconfig
+.vscode
+*.vim
+
+# envrc
+.envrc
+
+# git
+.git
+.github
+.gitignore
